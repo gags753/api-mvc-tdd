@@ -1,0 +1,21 @@
+"use strict";
+exports.__esModule = true;
+exports.router = void 0;
+var express_1 = require("express");
+var CreateUserController_1 = require("./controllers/CreateUserController");
+var DeleteUserController_1 = require("./controllers/DeleteUserController");
+var GetAllUsersController_1 = require("./controllers/GetAllUsersController");
+var UpdateUserController_1 = require("./controllers/UpdateUserController");
+var router = express_1.Router();
+exports.router = router;
+var createUserController = new CreateUserController_1.CreateUserController();
+var getAllUsersController = new GetAllUsersController_1.GetAllUsersController();
+var updateUserController = new UpdateUserController_1.UpdateUserController();
+var deleteUserController = new DeleteUserController_1.DeleteUserController();
+router.get('/', function (request, response) {
+    return response.json({ mensagem: 'Bem vindo a nossa DIO API' });
+});
+router.post('/usuarios', createUserController.handle);
+router.get('/usuarios', getAllUsersController.handle);
+router.patch('/usuario', updateUserController.handle);
+router["delete"]('/usuario/:id', deleteUserController.handle);
